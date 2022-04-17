@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Cipher Text</title>
+</head>
+
+<body>
+    <div class="main">
+        <div class="form">
+            <label for="Input">
+                Enter Your Text Below
+            </label>
+            <input type="text" name="text" id="text" autofocus placeholder="Text To Cipher">
+            <input type="number" name="num" id="num" placeholder="Cipher Number"
+                title="Number To Increase Or Decrease The Alphabets">
+            <button id="submit">Generate</button>
+            <button id="reset">Reset</button>
+            <input type="text" name="gtext" id="gtext" placeholder="Your Cipher Text..." readonly>
+        </div>
+    </div>
+</body>
+<script>
+    $(function () {
+        $("#submit").click(function () {
+            let val = $("#text").val();
+            let num = $("#num").val();
+            let nWord = "";
+            let gwords = [];
+            for (let i = 0; i < val.length; i++) {
+                gwords[i] = val.charCodeAt(i) + parseInt(num);
+            }
+            for (let i = 0; i < val.length; i++) {
+                nWord += String.fromCharCode(gwords[i]);
+            }
+            $("#gtext").val(nWord);
+        });
+        $("#reset").click(function () {
+            document.getElementById("gtext").value = null;
+            document.getElementById("text").value = null;
+        });
+    });
+</script>
+
+</html>
